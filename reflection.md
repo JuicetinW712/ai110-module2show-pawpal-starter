@@ -7,6 +7,25 @@
 - Briefly describe your initial UML design.
 - What classes did you include, and what responsibilities did you assign to each?
 
+Core Actions:
+- Add a pet
+- See tasks and appointments for the day 
+- Track a pet's diet
+
+Classes:
+- Pet class
+    - Stores information about the pet
+    - Ability to update the pet's weight, age, etc
+- Scheduler class
+    - Stores information about tasks and appointments
+    - Ability to create, update, and delete tasks/appointments for a specific pet
+- Diet tracker class
+    - Stores information about the pet's diet over time
+    - Ability to set and retrieve nutrition info (e.g. caloric)
+- Recommendations class
+    - Synthesizes the information to give recs and then gives an explanation for those recs
+    - E.g. feed the dog or reminder for an appointment
+
 **b. Design changes**
 
 - Did your design change during implementation?
