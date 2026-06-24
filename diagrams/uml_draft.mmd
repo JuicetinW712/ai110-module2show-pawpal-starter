@@ -1,59 +1,44 @@
 classDiagram
+  class Owner {
+    +String id
+    +String name
+    +String email
+  }
   class Pet {
+    +String id
     +String name
     +String species
     +String breed
-    +Int age
     +Float weight
-    +updateWeight(w Float)
   }
-
+  class Scheduler {
+    +createTask(petId, task)
+    +updateTask(petId, id, task)
+    +deleteTask(petId, id)
+    +getTasksForDate(petId, date) Task[]
+    +getAllTasks(petId) Task[]
+  }
   class Task {
     +String id
     +String name
+    +String description
     +Int duration
     +String priority
-    +String scheduledDate
+    +Date startDate
+    +Date endDate
     +String[] recurringDays
-    +isRecurring() Bool
   }
-
-  class DietEntry {
-    +String date
-    +String mealName
-    +Int calories
-  }
-
-  class Scheduler {
-    +Task[] tasks
+  class Recommendation {
+    +String id
     +String petId
-    +String date
-    +Int availableMinutes
-    +createTask(task Task)
-    +deleteTask(id String)
-    +getTasksForDate(date String)
+    +String category
+    +String text
+    +String explanation
+    +generate(pet, tasks) Rec[]
   }
 
-  class DietTracker {
-    +String petId
-    +DietEntry[] entries
-    +Int dailyCalGoal
-    +getCalories(date String)
-    +getNutritionLog()
-  }
-
-  class Recommendations {
-    +Pet pet
-    +Scheduler scheduler
-    +DietTracker dietTracker
-    +generateRecs()
-    +explainRec(id String)
-  }
-
+  Owner *-- "1..*" Pet : owns
   Pet --> Scheduler : schedules for
-  Pet --> DietTracker : tracks diet
-  Task "0..*" --o Scheduler : contained in
-  DietEntry "0..*" --o DietTracker : logged in
-  Scheduler ..> Recommendations : feeds into
-  DietTracker --> Recommendations : feeds into
-  Pet ..> Recommendations : feeds into
+  Scheduler o-- "0..*" Task : contains
+  Pet ..> Recommendation : feeds into
+  Scheduler ..> Recommendation : feeds into

@@ -2,11 +2,6 @@
 
 ## 1. System Design
 
-**a. Initial design**
-
-- Briefly describe your initial UML design.
-- What classes did you include, and what responsibilities did you assign to each?
-
 Core Actions:
 - Add a pet
 - See tasks and appointments for the day 
@@ -26,12 +21,21 @@ Classes:
     - Synthesizes the information to give recs and then gives an explanation for those recs
     - E.g. feed the dog or reminder for an appointment
 
+**a. Initial design**
+
+- Briefly describe your initial UML design.
+- What classes did you include, and what responsibilities did you assign to each?
+
+I included 5 classes: Task, Scheduler, Pet, Owner, and Recommendation. Owner and Pet are pure data classes, with an owner holding one or more pets. Task is also a data class holding the details of a scheduled activity, including its name, description, duration, priority, date range, and optional recurring days. Scheduler is a generic service class — rather than being tied to a specific pet, it takes a petId as a parameter on each method, allowing it to create, update, delete, and query tasks for any pet. Recommendation is a combined data and logic class that holds the result of a recommendation (text, explanation, category) and exposes a static generate() method that takes a pet and its tasks to produce relevant suggestions.
+
 **b. Design changes**
 
 - Did your design change during implementation?
 - If yes, describe at least one change and why you made it.
 
 ---
+
+Yes, 
 
 ## 2. Scheduling Logic and Tradeoffs
 
